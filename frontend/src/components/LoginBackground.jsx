@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "./Loginbg.css";
+import "./loginbg.css";
 
 /*
   Login background: a soft grid, a slow-breathing glow behind the card, and a drifting particle network.
