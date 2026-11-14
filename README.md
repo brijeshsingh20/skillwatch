@@ -27,9 +27,9 @@ The first run creates a virtual environment, installs packages (a few minutes), 
 
 | Account | Email | Password |
 |---|---|---|
-| Super Administrator | `superadmin@skillwatch.local` | `Demo@12345` |
-| Monitoring Officer | `officer@skillwatch.local` | `Demo@12345` |
-| Training Centre Administrator (Pune) | `admin.sc001@skillwatch.local` | `Demo@12345` |
+| Super Administrator | `superadmin@skillwatch.local` | `Demo@` |
+| Monitoring Officer | `officer@skillwatch.local` | `Demo@` |
+| Training Centre Administrator (Pune) | `admin.sc001@skillwatch.local` | `Demo@` |
 
 Options: `-ResetDemo` (wipe and rebuild the demo data), `-SkipInstall`, `-NoWorker`, `-WithYolo`, `-WorkerMinutes 5`.
 These accounts and the secret in `.env.example` are for the demo only. Change them before any real use.
