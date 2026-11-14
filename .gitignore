@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+data/skillwatch.db
+data/edge_queue.db
+data/eval/
+data/thumbnails/*.jpg
+frontend/node_modules/
+frontend/dist/

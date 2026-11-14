@@ -1,0 +1,4 @@
+# Optional: YOLOv8-nano person detection for REAL footage (VISION_PERSON_DETECTOR=yolo).
+# Pulls in PyTorch (several hundred MB). Not needed for the synthetic demo, which uses the motion counter.
+-r requirements.txt
+ultralytics==8.3.40

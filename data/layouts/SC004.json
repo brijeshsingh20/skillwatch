@@ -1,0 +1,266 @@
+{
+  "frame_size": [
+    640,
+    480
+  ],
+  "slots": [
+    {
+      "id": "workbench-1",
+      "item_type": "workbench",
+      "box": [
+        15,
+        25,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "workbench-2",
+      "item_type": "workbench",
+      "box": [
+        115,
+        25,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "workbench-3",
+      "item_type": "workbench",
+      "box": [
+        215,
+        25,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "workbench-4",
+      "item_type": "workbench",
+      "box": [
+        315,
+        25,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "workbench-5",
+      "item_type": "workbench",
+      "box": [
+        415,
+        25,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "workbench-6",
+      "item_type": "workbench",
+      "box": [
+        515,
+        25,
+        90,
+        50
+      ]
+    },
+    {
+      "id": "chair-1",
+      "item_type": "chair",
+      "box": [
+        30,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-2",
+      "item_type": "chair",
+      "box": [
+        70,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-3",
+      "item_type": "chair",
+      "box": [
+        110,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-4",
+      "item_type": "chair",
+      "box": [
+        150,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-5",
+      "item_type": "chair",
+      "box": [
+        190,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-6",
+      "item_type": "chair",
+      "box": [
+        230,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-7",
+      "item_type": "chair",
+      "box": [
+        270,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-8",
+      "item_type": "chair",
+      "box": [
+        310,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-9",
+      "item_type": "chair",
+      "box": [
+        350,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-10",
+      "item_type": "chair",
+      "box": [
+        390,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-11",
+      "item_type": "chair",
+      "box": [
+        430,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-12",
+      "item_type": "chair",
+      "box": [
+        470,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-13",
+      "item_type": "chair",
+      "box": [
+        510,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-14",
+      "item_type": "chair",
+      "box": [
+        550,
+        150,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "chair-15",
+      "item_type": "chair",
+      "box": [
+        30,
+        195,
+        26,
+        26
+      ]
+    },
+    {
+      "id": "machine-1",
+      "item_type": "machine",
+      "box": [
+        20,
+        395,
+        70,
+        70
+      ],
+      "indicator": [
+        74,
+        401,
+        10,
+        10
+      ]
+    },
+    {
+      "id": "machine-2",
+      "item_type": "machine",
+      "box": [
+        110,
+        395,
+        70,
+        70
+      ],
+      "indicator": [
+        164,
+        401,
+        10,
+        10
+      ]
+    },
+    {
+      "id": "machine-3",
+      "item_type": "machine",
+      "box": [
+        200,
+        395,
+        70,
+        70
+      ],
+      "indicator": [
+        254,
+        401,
+        10,
+        10
+      ]
+    }
+  ]
+}

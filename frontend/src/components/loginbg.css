@@ -1,0 +1,28 @@
+/* Login background layers. Everything is behind the card and ignores the pointer. */
+.lb-wrap { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+/* inside the app shell: sit behind the sidebar, header and cards instead of above them */
+.lb-behind { z-index: -1; }
+.lb-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* faint blueprint grid that fades out toward the edges */
+.lb-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(59, 107, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 107, 255, 0.09) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 20%, transparent 100%);
+}
+
+/* slow-breathing cobalt + lime glow behind the login card */
+.lb-glow {
+  position: absolute; left: 50%; top: 50%; width: 720px; height: 720px; margin: -360px 0 0 -360px;
+  border-radius: 9999px; filter: blur(70px);
+  background: radial-gradient(circle at 40% 40%, rgba(31, 75, 255, 0.55), rgba(31, 75, 255, 0) 62%),
+              radial-gradient(circle at 68% 66%, rgba(198, 255, 0, 0.14), rgba(198, 255, 0, 0) 55%);
+  animation: lb-breathe 9s ease-in-out infinite;
+}
+@keyframes lb-breathe { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.12); opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) { .lb-glow { animation: none; } }

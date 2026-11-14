@@ -1,0 +1,24 @@
+{
+  "centre_code": "SC002",
+  "video": "videos/SC002.mp4",
+  "fps": 8,
+  "duration_s": 40,
+  "camera_profile": "good",
+  "true_count": 8,
+  "claimed_count": 25,
+  "sanctioned": {
+    "chair": 25,
+    "workbench": 5,
+    "machine": 2
+  },
+  "present": {
+    "chair": 25,
+    "workbench": 5,
+    "machine": 2
+  },
+  "missing": {},
+  "not_operable": {},
+  "expected_alerts": [
+    "attendance_mismatch"
+  ]
+}
