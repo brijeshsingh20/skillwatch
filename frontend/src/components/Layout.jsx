@@ -36,6 +36,7 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen">
+      <div key={pathname} className="route-progress" aria-hidden="true" />
       <LoginBackground behind />
 
       {open && <div className="fixed inset-0 z-30 bg-black/60 md:hidden" onClick={() => setOpen(false)} aria-hidden="true" />}
@@ -110,7 +111,9 @@ export default function Layout() {
           </div>
         </header>
         <main className="min-w-0 flex-1 p-3 sm:p-4 md:p-6">
-          <Outlet />
+          <div key={pathname} className="page-enter">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

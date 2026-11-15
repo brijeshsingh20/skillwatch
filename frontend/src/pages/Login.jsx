@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { LogIn } from "lucide-react";
+import { Check, LogIn } from "lucide-react";
 import { errorMessage } from "../api.js";
-import { useAuth } from "../auth.jsx";
+import { ROLE_LABELS, useAuth } from "../auth.jsx";
 import { ErrorBox } from "../components/ui.jsx";
 import LoginBackground from "../components/LoginBackground.jsx";
 
@@ -21,19 +21,32 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [phase, setPhase] = useState("idle"); // "idle" | "success" (welcome animation playing)
+  const [who, setWho] = useState(null);
+  const hold = useRef(false); // keeps this page on screen while the welcome animation plays
 
-  if (user) return <Navigate to="/overview" replace />;
+  // After the welcome animation, open the dashboard (almost at once if the person prefers reduced motion).
+  useEffect(() => {
+    if (phase !== "success") return undefined;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = setTimeout(() => navigate(location.state?.from || "/overview", { replace: true }), reduce ? 150 : 1700);
+    return () => clearTimeout(timer);
+  }, [phase]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (user && !hold.current) return <Navigate to="/overview" replace />;
 
   async function submit(e) {
     e.preventDefault();
     setBusy(true);
     setError("");
+    hold.current = true;
     try {
-      await login(email.trim(), password);
-      navigate(location.state?.from || "/overview", { replace: true });
+      const signedIn = await login(email.trim(), password);
+      setWho(signedIn);
+      setPhase("success");
     } catch (err) {
+      hold.current = false;
       setError(errorMessage(err));
-    } finally {
       setBusy(false);
     }
   }
@@ -42,7 +55,7 @@ export default function Login() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <LoginBackground />
       <div className="relative z-10 w-full max-w-sm">
-        <div className="glass rise space-y-4 p-6" style={{ "--i": 1 }}>
+        <div className={`glass rise space-y-4 p-6 transition duration-500 ease-out ${phase === "success" ? "scale-95 opacity-0" : ""}`} style={{ "--i": 1 }}>
           <div className="text-center">
             <h1 className="text-2xl font-bold tracking-tight text-white">SkillWatch AI</h1>
             <p className="text-sm text-slate-400">Sign in to the compliance dashboard</p>
@@ -58,7 +71,8 @@ export default function Login() {
               <input className="input mt-1" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
             <button className="btn-primary w-full justify-center" disabled={busy}>
-              <LogIn className="h-4 w-4" /> {busy ? "Signing in…" : "Sign in"}
+              {phase === "success" ? <Check className="h-4 w-4" /> : <LogIn className="h-4 w-4" />}{" "}
+              {phase === "success" ? "Signed in" : busy ? "Signing in…" : "Sign in"}
             </button>
           </form>
           <div className="border-t border-white/10 pt-3">
@@ -81,6 +95,20 @@ export default function Login() {
           </div>
         </div>
       </div>
+      {phase === "success" && (
+        <div className="signin-overlay" role="status" aria-live="polite">
+          <div className="signin-ring" aria-hidden="true" />
+          <div className="signin-content">
+            <svg className="signin-check" viewBox="0 0 52 52" aria-hidden="true">
+              <circle cx="26" cy="26" r="24" />
+              <path d="M15 27l8 8 15-17" />
+            </svg>
+            <div className="text-2xl font-bold tracking-tight text-white">Welcome back</div>
+            {who && <div className="mt-1 text-sm text-slate-200">{who.full_name} · {ROLE_LABELS[who.role]}</div>}
+            <div className="mt-2 text-xs uppercase tracking-widest text-acid">Opening your dashboard…</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
