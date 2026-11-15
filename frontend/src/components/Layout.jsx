@@ -21,6 +21,7 @@ export default function Layout() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false); // phone menu drawer
+  const [leaving, setLeaving] = useState(false); // sign-out animation playing
   const items = NAV.filter((n) => !n.roles || hasRole(...n.roles));
 
   // Close the drawer after navigating, and on Escape.
@@ -33,6 +34,17 @@ export default function Layout() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  // Play the sign-out animation first, then really sign out (almost at once if the person prefers reduced motion).
+  useEffect(() => {
+    if (!leaving) return undefined;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = setTimeout(() => {
+      logout();
+      navigate("/login");
+    }, reduce ? 150 : 1400);
+    return () => clearTimeout(timer);
+  }, [leaving]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex min-h-screen">
@@ -101,10 +113,8 @@ export default function Layout() {
             <button
               className="btn-secondary"
               aria-label="Sign out"
-              onClick={() => {
-                logout();
-                navigate("/login");
-              }}
+              disabled={leaving}
+              onClick={() => setLeaving(true)}
             >
               <LogOut className="h-4 w-4" /> <span className="hidden sm:inline">Sign out</span>
             </button>
@@ -116,6 +126,17 @@ export default function Layout() {
           </div>
         </main>
       </div>
+      {leaving && (
+        <div className="signout-overlay" role="status" aria-live="polite">
+          <div className="signout-rings" aria-hidden="true"><i /><i /><i /></div>
+          <div className="signout-content">
+            <div className="signout-icon"><LogOut className="h-7 w-7" /></div>
+            <div className="text-2xl font-bold tracking-tight text-white">Signing you out</div>
+            <div className="mt-1 text-sm text-slate-300">See you soon, {user.full_name.split(" ")[0]}</div>
+            <div className="signout-bar" aria-hidden="true"><span /></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
